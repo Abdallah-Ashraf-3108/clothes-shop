@@ -1,5 +1,7 @@
+
 import 'package:ecommerce_app2/core/routing/app_routes.dart';
 import 'package:ecommerce_app2/core/styles/app_colors.dart';
+import 'package:ecommerce_app2/core/styles/app_styles.dart';
 import 'package:ecommerce_app2/core/widgets/custom_text_form_field.dart';
 import 'package:ecommerce_app2/core/widgets/spacing_widget.dart';
 import 'package:ecommerce_app2/features/home/widgets/category_item_widget.dart';
@@ -20,7 +22,10 @@ class HomeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const HeightSpace(28),
-          SizedBox(width: 335.w, child: Text("Discover")),
+          SizedBox(
+            width: 335.w,
+            child: Text("Discover", style: AppStyles.primaryHeadLinesStyle),
+          ),
           const HeightSpace(16),
           Row(
             children: [
@@ -68,7 +73,7 @@ class HomeScreen extends StatelessWidget {
                   title: "Shoes",
                   price: "1190 \$",
                   onTap: () {
-                    GoRouter.of(context).pushNamed(AppRouter.productScreen);
+                    GoRouter.of(context).pushNamed(AppRoutes.productScreen);
                   },
                 ),
                 ProductItemWidget(title: "Shoes", price: "1190 \$"),

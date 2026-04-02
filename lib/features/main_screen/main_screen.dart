@@ -1,7 +1,8 @@
 import 'package:ecommerce_app2/core/styles/app_colors.dart';
+import 'package:ecommerce_app2/features/account/account_screen.dart';
 import 'package:ecommerce_app2/features/cart/cart_screen.dart';
 import 'package:ecommerce_app2/features/home/home_screen.dart';
-import 'package:ecommerce_app2/features/profile/profile_screen.dart';
+
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -16,7 +17,7 @@ class _MainScreenState extends State<MainScreen> {
   List<Widget> screens = [
     const HomeScreen(),
     const CartScreen(),
-    const ProfileScreen(),
+    const AccountScreen(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,10 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icon(Icons.shopping_cart),
             label: 'Cart',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_balance_outlined),
+            label: 'Account',
+          ),
         ],
       ),
     );

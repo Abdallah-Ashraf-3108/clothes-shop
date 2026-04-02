@@ -1,9 +1,7 @@
 import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app2/core/networking/app_endpoints.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-
 
 class DioHelper {
   static Dio? dio;
