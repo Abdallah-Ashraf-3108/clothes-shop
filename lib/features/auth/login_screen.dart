@@ -1,8 +1,15 @@
+import 'dart:developer';
+import 'package:animated_snack_bar/animated_snack_bar.dart';
+import 'package:dartz/dartz.dart' as either;
+import 'package:dio/dio.dart';
 import 'package:ecommerce_app2/core/styles/app_colors.dart';
 import 'package:ecommerce_app2/core/widgets/custom_button.dart';
 import 'package:ecommerce_app2/core/widgets/custom_text_form_field.dart';
+import 'package:ecommerce_app2/core/widgets/show_animated_snackbar.dart';
 import 'package:ecommerce_app2/core/widgets/spacing_widget.dart';
+import 'package:ecommerce_app2/features/auth/models/login_response_model.dart';
 import 'package:ecommerce_app2/features/auth/register_screen.dart';
+import 'package:ecommerce_app2/features/auth/repo/auth_repo.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,13 +26,49 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   late final TextEditingController userNameController;
   late final TextEditingController passwordController;
-  final bool isLoading = false;
+  bool isLoading = false;
 
   @override
   void initState() {
     super.initState();
     userNameController = TextEditingController();
     passwordController = TextEditingController();
+  }
+  Future<void> login() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    final resp = await AuthRepo().login(
+      username: userNameController.text,
+      password: passwordController.text,
+    );
+
+    resp.fold(
+      (message) {
+        showAnimatedSnackbar(
+          message: "message",
+          context: context,
+          type: AnimatedSnackBarType.error,
+        );
+        log(message);
+      },
+      (response) {
+        showAnimatedSnackbar(
+          message: "Login successful",
+          context: context,
+          type: AnimatedSnackBarType.success,
+        );
+        log(response.toString());
+
+        // 🔥 هنا تعمل navigation
+        context.go('/home');
+      },
+    );
+
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
@@ -103,6 +146,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPress: () {
                           if (_formKey.currentState!.validate()) {
                             // If the form is valid, display a snackbar.
+                            login();
                           }
                         },
                         buttonText: "Sign In",

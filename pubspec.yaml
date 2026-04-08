@@ -41,6 +41,8 @@ dependencies:
   cached_network_image: ^3.4.1
   flutter_bloc: ^9.1.1
   shared_preferences: ^2.3.3
+  dartz: ^0.10.1
+  animated_snack_bar: ^0.4.0
 
 dev_dependencies:
   flutter_test:
