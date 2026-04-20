@@ -1,4 +1,3 @@
-
 import 'package:ecommerce_app2/core/routing/app_routes.dart';
 import 'package:ecommerce_app2/core/styles/app_colors.dart';
 import 'package:ecommerce_app2/core/styles/app_styles.dart';
@@ -22,14 +21,11 @@ class HomeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const HeightSpace(28),
-          SizedBox(
-            width: 335.w,
-            child: Text("Discover", style: AppStyles.primaryHeadLinesStyle),
-          ),
+          Text("Discover", style: AppStyles.primaryHeadLinesStyle),
           const HeightSpace(16),
           Row(
             children: [
-              CustomTextField(width: 270.w, hintText: "Search For Clothes"),
+              Expanded(child: CustomTextField(hintText: "Search For Clothes")),
               const WidthSpace(8),
               Container(
                 width: 56.w,

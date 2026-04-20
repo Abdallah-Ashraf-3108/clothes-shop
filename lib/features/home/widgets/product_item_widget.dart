@@ -1,4 +1,3 @@
-
 import 'package:ecommerce_app2/core/widgets/spacing_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -19,20 +18,30 @@ class ProductItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap ?? () {},
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: ClipRRect(
               borderRadius: BorderRadius.circular(8.r),
-              child: Container(width: 150.w, height: 150.h, color: Colors.grey),
+              child: Container(
+                width: double.infinity,
+                color: Colors.grey,
+              ),
             ),
-            const HeightSpace(8),
-            Text(title),
-            const HeightSpace(8),
-            Text(price),
-          ],
-        ),
+          ),
+          const HeightSpace(8),
+          Text(
+            title,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const HeightSpace(4),
+          Text(
+            price,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ],
       ),
     );
   }
