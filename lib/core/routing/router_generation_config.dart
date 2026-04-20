@@ -11,7 +11,7 @@ import 'package:go_router/go_router.dart';
 
 class RouterGenerationConfig {
   static GoRouter goRouter = GoRouter(
-    initialLocation: AppRoutes.loginScreen,
+    initialLocation: AppRoutes.registerScreen,
     routes: [
       GoRoute(
         name: AppRoutes.loginScreen,
@@ -25,7 +25,11 @@ class RouterGenerationConfig {
       GoRoute(
         name: AppRoutes.registerScreen,
         path: AppRoutes.registerScreen,
-        builder: (context, state) => const RegisterScreen(),
+        builder:
+            (context, state) => BlocProvider(
+              create: (context) => locator<AuthCubit>(),
+              child: const RegisterScreen(),
+            ),
       ),
       GoRoute(
         name: AppRoutes.mainScreen,

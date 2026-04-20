@@ -16,4 +16,9 @@ class StorageHelper {
   Future removeToken() async {
     await storage.delete(key: "token");
   }
+
+  Future<bool> isLoggedIn() async {
+    final token = await getToken();
+    return token != null && token.isNotEmpty;
+  }
 }

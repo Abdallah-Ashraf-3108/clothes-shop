@@ -1,51 +1,63 @@
 class LoginResponseModel {
-  final String? accessToken;
-  final String? refreshToken;
-  final int? id;
-  final String? username;
-  final String? email;
-  final String? firstName;
-  final String? lastName;
-  final String? gender;
-  final String? image;
+  final String? token;
+  final String? message;
+  final UserData? user;
 
   LoginResponseModel({
-    this.accessToken,
-    this.refreshToken,
-    this.id,
-    this.username,
-    this.email,
-    this.firstName,
-    this.lastName,
-    this.gender,
-    this.image,
+    this.token,
+    this.message,
+    this.user,
   });
 
   factory LoginResponseModel.fromJson(Map<String, dynamic> json) {
     return LoginResponseModel(
-      accessToken: json['accessToken'],
-      refreshToken: json['refreshToken'],
-      id: json['id'],
-      username: json['username'],
-      email: json['email'],
-      firstName: json['firstName'],
-      lastName: json['lastName'],
-      gender: json['gender'],
-      image: json['image'],
+      token: json['token'],
+      message: json['message'],
+      user: json['user'] != null ? UserData.fromJson(json['user']) : null,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      "accessToken": accessToken,
-      "refreshToken": refreshToken,
-      "id": id,
-      "username": username,
+      "token": token,
+      "message": message,
+      "user": user?.toJson(),
+    };
+  }
+}
+
+class UserData {
+  final String? name;
+  final String? email;
+  final String? role;
+  final String? profileImg;
+  final String? id;
+
+  UserData({
+    this.name,
+    this.email,
+    this.role,
+    this.profileImg,
+    this.id,
+  });
+
+  factory UserData.fromJson(Map<String, dynamic> json) {
+    return UserData(
+      name: json['name'],
+      email: json['email'],
+      role: json['role'],
+      profileImg: json['profileImg'],
+      id: json['id']?.toString(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "name": name,
       "email": email,
-      "firstName": firstName,
-      "lastName": lastName,
-      "gender": gender,
-      "image": image,
+      "role": role,
+      "profileImg": profileImg,
+      "id": id,
     };
   }
 }

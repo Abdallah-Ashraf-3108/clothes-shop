@@ -9,6 +9,8 @@ class CustomTextField extends StatelessWidget {
   final bool? isPassword;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
+  final TextInputType? keyboardType;
+  final bool? obscureText;
   const CustomTextField({
     super.key,
     this.hintText,
@@ -17,6 +19,8 @@ class CustomTextField extends StatelessWidget {
     this.isPassword,
     this.controller,
     this.validator,
+    this.keyboardType,
+    this.obscureText,
   });
 
   @override
@@ -27,7 +31,8 @@ class CustomTextField extends StatelessWidget {
         controller: controller,
         validator: validator,
         autofocus: false,
-        obscureText: isPassword ?? false,
+        obscureText: obscureText ?? isPassword ?? false,
+        keyboardType: keyboardType,
         cursorColor: AppColors.primaryColor,
         decoration: InputDecoration(
           hintText: hintText ?? "",
